@@ -574,8 +574,20 @@ proc FitDialogDoFit {} {
 
         $name Do
         $name Display
+
+		set tab [$spectk(pages) id select]
+		if {![string equal $tab ""]} {
+			set frame [$spectk(pages) tab cget $tab -window]
+			set page [lindex [split $frame .] end]
+			set current [$page GetMember current]
+			set display [format %s%s $page $current]
+
+			$display SetMember fitwave $spectk(fitwave)
+			$display SetMember fitroi  $spectk(fitroi)
+			$display SetMember fitname $name
+		}
     }
-    $display SetMember fitmarker $spectk(fitname22)
+    $display SetMember fitmarker $name
     FitDialogPrintResults $name
 }
 
