@@ -79,14 +79,16 @@ proc SetupSpecTk {} {
 	set spectk(toplevel) .top
 	frame $spectk(toplevel) -borderwidth 2 -relief raised -width 1600 -height 1200
 	set spectk(drawer) .drawer
-	set spectk(drawerwidth) 250
-	set spectk(draweropen) 0
+	set spectk(drawerwidth) 300
+	set spectk(draweropen) 1
 	frame $spectk(drawer) -borderwidth 2 -relief sunken -width $spectk(drawerwidth) -height 1200
 	grid $spectk(toplevel) $spectk(drawer) -sticky news
 	grid columnconfigure . 0 -weight 1
 	grid columnconfigure . 1 -weight 0
 	grid rowconfigure . 0 -weight 1
-	grid remove $spectk(drawer)
+	if {!$spectk(draweropen)} {
+		grid remove $spectk(drawer)
+	}
 #	pack $spectk(toplevel) -anchor w -expand 1 -fill y
 #	toplevel $spectk(toplevel) -width 500 -height 500
 	wm title . "SpecTk $spectk(version) ($spectk(configName))"
@@ -511,7 +513,7 @@ proc SetupButtons {} {
 	set w $spectk(buttons).drawer
 	frame $w -borderwidth 2 -relief groove
 #	label $w.title -text Drawer -font "generalbold"
-	button $w.button -text "Open\n\nDrawer" -font "general" \
+	button $w.button -text "Close\n\nDrawer" -font "general" \
 	-command OpenCloseDrawer -justify center
 	button $w.expand -text <> -font "general" -command ExpandDrawer -justify center
 	button $w.shrink -text >< -font "general" -command ShrinkDrawer -justify center
