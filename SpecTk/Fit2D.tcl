@@ -59,7 +59,7 @@ itcl::body Fit2D::Initialize {} {
 			if {!$spectk(hold6)} { set B 0.0 } else { set B $spectk(coeff6) }
 
 			if {![info exists spectk(percent)] || $spectk(percent) eq ""} {
-				set spectk(percent) 50
+				set spectk(percent) 90
 			}
 
 		} else {
