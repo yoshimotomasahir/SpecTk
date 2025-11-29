@@ -4,7 +4,7 @@
 # In[ ]:
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import _contour
+from matplotlib import contour
 from scipy.stats import chi2
 
 with open("data.txt", "r") as f:
