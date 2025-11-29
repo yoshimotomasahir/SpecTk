@@ -175,6 +175,14 @@ itcl::body Wave2D::Update {withdata} {
             set parameter [list $par $par]
         }
     }
+	set low [list \
+		[expr {[lindex $low 0] + 2.0*[lindex $increment 0]}] \
+		[expr {[lindex $low 1] + 2.0*[lindex $increment 1]}] \
+	]
+	set high [list \
+		[expr {[lindex $high 0] + 2.0*[lindex $increment 0]}] \
+		[expr {[lindex $high 1] + 2.0*[lindex $increment 1]}] \
+	]
 
     # Fill vectors with data if withdata is true
     if {$withdata} {

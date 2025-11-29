@@ -129,6 +129,8 @@ itcl::body Wave1D::Update {withdata} {
 
     # Fill vectors with data
     set increment [expr {1.0 * ($high - $low) / $bins}]
+	set low [expr {$low + 2.0 * $increment}]
+	set high [expr {$high + 2.0 * $increment}]
     set xlist {}
     for {set i 0} {$i <= $bins} {incr i} {
         lappend xlist [expr {$low + $i * $increment}]
