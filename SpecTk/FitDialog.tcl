@@ -176,6 +176,10 @@ proc FitDialogSelectFunction {f} {
 	switch -- $spectk(fitfunction) {
 		"Gaussian" {
 			set spectk(ncoeff) 5
+			set spectk(hold0) 1        ;# y0 fixed by default
+			set spectk(hold1) 1        ;# a fixed by default
+			set spectk(coeff0) 0       ;# initial value of y0
+			set spectk(coeff1) 0       ;# initial value of a
 			label $w.f -image gaussian
 #			label $w.f -text "y0 + A * exp(-(x-x0)^2 / 2 / sig^2)" -font "Times 12"
 			checkbutton $w.y0h -text y0: -font "smaller" -variable spectk(hold0) -anchor w
@@ -508,16 +512,16 @@ proc FitDialogDoFit {} {
         $name SetMember chisq 0.0
         $name Display
 
-	set tab [$spectk(pages) id select]
-	if {[string equal $tab ""]} {return}
-	set frame [$spectk(pages) tab cget $tab -window]
-	set page [lindex [split $frame .] end]
-	set current [$page GetMember current]
-	set display [format %s%s $page $current]
+		set tab [$spectk(pages) id select]
+		if {[string equal $tab ""]} {return}
+		set frame [$spectk(pages) tab cget $tab -window]
+		set page [lindex [split $frame .] end]
+		set current [$page GetMember current]
+		set display [format %s%s $page $current]
 
-	$display SetMember fitwave $spectk(fitwave)
-	$display SetMember fitroi $spectk(fitroi)
-	$display SetMember fitname $name
+		$display SetMember fitwave $spectk(fitwave)
+		$display SetMember fitroi $spectk(fitroi)
+		$display SetMember fitname $name
 
         set xl {}
         set yl {}
