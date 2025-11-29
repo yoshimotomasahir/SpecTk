@@ -608,6 +608,9 @@ itcl::body ROI::DB1Create {graph rtype xw yw} {
 			B1Create $graph $rtype $xw $yw
 		}
 		contour {
+			if {[info exists spectk(limits)] && [llength $spectk(limits)] >= 2} {
+				set spectk(limits) [lreplace $spectk(limits) end-1 end]
+			}			
 			$graph marker delete object position
 #			if {[$graph marker exist roi]} {$graph marker delete roi}
 			UnbindCreate $graph
